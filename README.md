@@ -1,68 +1,16 @@
 
-# Setup Docker Laravel 10 com PHP 8.1
-[Assine a Academy, e Seja VIP!](https://academy.especializati.com.br)
+# Laravel App 10x
 
-### Passo a passo
-Clone Repositório
-```sh
-git clone -b laravel-10-com-php-8.1 https://github.com/especializati/setup-docker-laravel.git app-laravel
-```
-```sh
-cd app-laravel
-```
+Integração de Novos Pacotes Futuros
+Aplicativo usado para aprendizado pessoal onde registrarei todos os passos e evoluções que farei com o Laravel.
 
+# Aprimoramentos e Próximos Pacotes
 
-Crie o Arquivo .env
-```sh
-cp .env.example .env
-```
+Autenticação:
+Inicialmente, implementarei a autenticação utilizando Laravel Breeze. No entanto, estou planejando uma atualização migrando para Laravel Jetstream e Laravel Fortify para uma experiência mais robusta e personalizável.
 
+Testes:
+Para garantir a qualidade do código, irei incorporar testes automatizados. O Laravel Dusk será integrado para testes de ponta a ponta, proporcionando uma cobertura abrangente e garantindo a estabilidade do aplicativo.
 
-Atualize as variáveis de ambiente do arquivo .env
-```dosini
-APP_NAME=EspecializaTi
-APP_URL=http://localhost:8989
-
-DB_CONNECTION=mysql
-DB_HOST=db
-DB_PORT=3306
-DB_DATABASE=nome_que_desejar_db
-DB_USERNAME=nome_usuario
-DB_PASSWORD=senha_aqui
-
-CACHE_DRIVER=redis
-QUEUE_CONNECTION=redis
-SESSION_DRIVER=redis
-
-REDIS_HOST=redis
-REDIS_PASSWORD=null
-REDIS_PORT=6379
-```
-
-
-Suba os containers do projeto
-```sh
-docker-compose up -d
-```
-
-
-Acesse o container app
-```sh
-docker-compose exec app bash
-```
-
-
-Instale as dependências do projeto
-```sh
-composer install
-```
-
-
-Gere a key do projeto Laravel
-```sh
-php artisan key:generate
-```
-
-
-Acesse o projeto
-[http://localhost:8989](http://localhost:8989)
+Desempenho:
+Buscando otimizar o desempenho, estou considerando a integração de dois pacotes poderosos: Laravel Octane e Laravel Pulse. Essas adições visam acelerar a execução do aplicativo, garantindo uma experiência mais rápida e eficiente para os usuários.
