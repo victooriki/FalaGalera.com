@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\{ChamadosController};
+use App\Http\Controllers\Chamados\{ChamadosController};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
