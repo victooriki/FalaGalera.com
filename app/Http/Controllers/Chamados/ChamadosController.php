@@ -21,9 +21,14 @@ class ChamadosController extends Controller
         return view('chamados/create');
     }
 
-    public function insert_chamado(Request $request)
+    public function insert_chamado(Request $request, Chamados $chamados_model)
     {
-        dd($request->all());
+        $data = $request->all();
+        $data['stats'] = 1;
+
+        $chamados_model->create($data);
+
+        return redirect()->route('chamados.index');
     }
 }
 
