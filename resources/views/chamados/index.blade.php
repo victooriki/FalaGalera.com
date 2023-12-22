@@ -1,11 +1,13 @@
 <h1>Tabela de Chamados</h1>
 
+<a href="{{ route('chamados.create') }}">Novo Chamado</a>
+
 <table>
     <thead>
         <th>Titulo</th>
         <th>Descrição</th>
         <th>Status</th>
-        <th>Criando em</th>
+        <th>Criado em</th>
         <th>Ações</th>
     </thead>
     <tbody>
