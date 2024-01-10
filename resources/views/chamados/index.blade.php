@@ -18,7 +18,8 @@
             <td>{{ $chamado->stats }}</td>
             <td>{{ $chamado->created_at }}</td>
             <td>
-                >
+                <a href="{{ route('chamados.show', $chamado->id) }}">Visualizar</a>
+                <a href="{{ route('chamados.edit', $chamado->id) }}">Editar</a>
             </td>
         </tr>
         @endforeach
