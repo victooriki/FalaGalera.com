@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreUpdateChamados extends FormRequest
 {
@@ -21,7 +22,7 @@ class StoreUpdateChamados extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'titulo' => [
                 'required',
                 'min:5',
@@ -39,5 +40,16 @@ class StoreUpdateChamados extends FormRequest
                 'max:255'
             ],
         ];
+
+        if ($this->method('PUT')) {
+            $rules['titulo'] = [
+                'required',
+                'min:5',
+                'max:255',
+                Rule::unique('chamados')->ignore($this->id)
+            ];
+        }
+
+        return $rules;
     }
 }

@@ -31,7 +31,7 @@ class ChamadosController extends Controller
 
     public function insert_chamado(StoreUpdateChamados $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $data['stats'] = 1;
 
         $this->chamados->create($data);
@@ -57,17 +57,13 @@ class ChamadosController extends Controller
         return view('chamados.edit', compact('chamado'));
     }
 
-    public function update(Request $request, string|int $id)
+    public function update(StoreUpdateChamados $request, string|int $id)
     {
         if(!$chamado = $this->chamados->find($id)) {
             return back();
         }
 
-        $chamado->update($request->only([
-            'titulo',
-            'descricao',
-            'email'
-        ]));
+        $chamado->update($request->validated());
 
         return redirect()->route('chamados.index');
     }

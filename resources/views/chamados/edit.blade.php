@@ -1,5 +1,11 @@
 <h1>Editar Chamado {{ $chamado->titulo }}</h1>
 
+@if($errors->any())
+    @foreach($errors->all() as $error)
+        {{ $error }}
+    @endforeach
+@endif
+
 <form action="{{ route('chamados.update', $chamado->id) }}" method="POST">
     @csrf()
     @method('PUT')
