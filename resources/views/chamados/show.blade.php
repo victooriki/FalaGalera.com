@@ -14,3 +14,9 @@
         <li>{{ $chamado->feedback_avaliacao}}</li>
     @endif
 </ul>
+
+<form action="{{ route('chamados.destroy', $chamado->id)}}" method="post">
+    @csrf()
+    @method('DELETE')
+    <button type="submit">Deletar</button>
+</form>
