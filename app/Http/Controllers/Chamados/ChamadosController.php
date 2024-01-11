@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Chamados;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdateChamados;
 use App\Models\Chamados;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ class ChamadosController extends Controller
         return view('chamados.create');
     }
 
-    public function insert_chamado(Request $request)
+    public function insert_chamado(StoreUpdateChamados $request)
     {
         $data = $request->all();
         $data['stats'] = 1;
@@ -70,6 +71,15 @@ class ChamadosController extends Controller
 
         return redirect()->route('chamados.index');
     }
-}
 
-?>
+    public function destroy(string|int $id)
+    {
+        if(!$chamado = $this->chamados->find($id)) {
+            return back();
+        }
+
+        $chamado->delete();
+
+        return redirect()->route('chamados.index');
+    }
+}
