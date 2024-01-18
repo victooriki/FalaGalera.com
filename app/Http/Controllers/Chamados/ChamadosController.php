@@ -2,46 +2,47 @@
 
 namespace App\Http\Controllers\Chamados;
 
+use App\DTO\CreateChamadosDTO;
+use App\DTO\UpdateChamadosDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateChamados;
 use App\Models\Chamados;
+use App\Services\ChamadosService;
 use Illuminate\Http\Request;
 
 class ChamadosController extends Controller
 {
     protected $chamados;
 
-    public function __construct(Chamados $chamados)
+    public function __construct(Chamados $chamados, protected ChamadosService $service)
     {
         $this->chamados = $chamados;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $chamados = $this->chamados->all();
+        $chamados = $this->service->getAll($request->filter);
 
         return view('chamados.index', compact('chamados'));
     }
 
     public function create()
     {
-
         return view('chamados.create');
     }
 
-    public function insert_chamado(StoreUpdateChamados $request)
+    public function store(StoreUpdateChamados $request)
     {
-        $data = $request->validated();
-        $data['stats'] = 1;
-
-        $this->chamados->create($data);
+        $this->service->new(
+            CreateChamadosDTO::makeFromRequest($request)
+        );
 
         return redirect()->route('chamados.index');
     }
 
     public function show(string|int $id)
     {
-        if(!$chamado = $this->chamados->find($id)) {
+        if(!$chamado = $this->service->getOne($id)) {
             return back();
         }
 
@@ -50,7 +51,7 @@ class ChamadosController extends Controller
 
     public function edit(string|int $id)
     {
-        if(!$chamado = $this->chamados->find($id)) {
+        if(!$chamado = $this->service->getOne($id)) {
             return back();
         }
 
@@ -59,22 +60,20 @@ class ChamadosController extends Controller
 
     public function update(StoreUpdateChamados $request, string|int $id)
     {
-        if(!$chamado = $this->chamados->find($id)) {
+        $chamado = $this->service->update(
+            UpdateChamadosDTO::makeFromRequest($request)
+        );
+
+        if(!$chamado) {
             return back();
         }
-
-        $chamado->update($request->validated());
 
         return redirect()->route('chamados.index');
     }
 
     public function destroy(string|int $id)
     {
-        if(!$chamado = $this->chamados->find($id)) {
-            return back();
-        }
-
-        $chamado->delete();
+        $this->service->delete($id);
 
         return redirect()->route('chamados.index');
     }
