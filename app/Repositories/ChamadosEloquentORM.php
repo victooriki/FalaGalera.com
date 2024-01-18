@@ -14,6 +14,20 @@ class ChamadosEloquentORM implements ChamadosRepositoryInterface
         protected Chamados $model
     ) {}
 
+    public function paginate(int $page = 1, int $totalPerPage = 15, string $filter = null): PaginationInterface
+    {
+        $result =  $this->model
+                    ->where(function ($query) use ($filter) {
+                        if ($filter) {
+                            $query->where('titulo', $filter);
+                            $query->orWere('descricao', 'like', "%{$filter}%");
+                        }
+                    })
+                    ->paginate($totalPerPage, ['*'], 'page', $page);
+
+        return new PaginationPresenter($result);
+    }
+
     public function getAll(string $filter = null): array
     {
         return $this->model

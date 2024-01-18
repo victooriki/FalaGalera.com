@@ -21,9 +21,15 @@ class ChamadosController extends Controller
 
     public function index(Request $request)
     {
-        $chamados = $this->service->getAll($request->filter);
+        $chamados = $this->service->paginate(
+            page: $request->get('page', 1),
+            totalPerPage: $request->get('perPage', 1),
+            filter: $request->filter,
+        );
 
-        return view('chamados.index', compact('chamados'));
+        $filters = ['filter' => $request->get('filter', '')];
+
+        return view('chamados.index', compact('chamados', 'filters'));
     }
 
     public function create()

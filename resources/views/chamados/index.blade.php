@@ -10,17 +10,20 @@
         <th>Ações</th>
     </thead>
     <tbody>
-        @foreach ($chamados as $chamado)
-        <tr>
-            <td>{{ $chamado['titulo'] }}</td>
-            <td>{{ $chamado['descricao'] }}</td>
-            <td>{{ $chamado['stats'] }}</td>
-            <td>
-                <a href="{{ route('chamados.show', $chamado['id']) }}">Visualizar</a>
-                <a href="{{ route('chamados.edit', $chamado['id']) }}">Editar</a>
-            </td>
-        </tr>
+        @foreach ($chamados->items() as $chamado)
+            <tr>
+                <td>{{ $chamado->titulo }}</td>
+                <td>{{ $chamado->descricao }}</td>
+                <td>{{ $chamado->stats }}</td>
+                <td>
+                    <a href="{{ route('chamados.show', $chamado->id) }}">Visualizar</a>
+                    <a href="{{ route('chamados.edit', $chamado->id) }}">Editar</a>
+                </td>
+            </tr>
         @endforeach
     </tbody>
 </table>
 
+<x-pagination 
+    :paginator="$chamados" 
+    :appends="$filters" />

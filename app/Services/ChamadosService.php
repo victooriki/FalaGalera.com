@@ -5,6 +5,7 @@ namespace App\Services;
 use App\DTO\CreateChamadosDTO;
 use App\DTO\UpdateChamadosDTO;
 use App\Repositories\ChamadosRepositoryInterface;
+use App\Repositories\PaginationInterface;
 use stdClass;
 
 class ChamadosService
@@ -13,6 +14,18 @@ class ChamadosService
         protected ChamadosRepositoryInterface $repository,
     )
     {}
+
+    public function paginate(
+        int $page = 1, 
+        int $totalPerPage = 15, 
+        string $filter = null
+    ): PaginationInterface {
+        return $this->repository->paginate(
+            page: $page,
+            totalPerPage: $totalPerPage,
+            filter: $filter,
+        );
+    }
 
     public function getAll(string $filter = null): array
     {
