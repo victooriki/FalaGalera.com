@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\ChamadosStats;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +15,7 @@ return new class extends Migration
             $table->string('titulo');
             $table->text('descricao');
             $table->string('email');
-            $table->enum('stats', [1, 2, 3]);
+            $table->enum('stats', array_column(ChamadosStats::cases(), 'name'));
             $table->timestamps();
         });
     }

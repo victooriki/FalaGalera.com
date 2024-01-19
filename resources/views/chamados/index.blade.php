@@ -14,7 +14,7 @@
             <tr>
                 <td>{{ $chamado->titulo }}</td>
                 <td>{{ $chamado->descricao }}</td>
-                <td>{{ $chamado->stats }}</td>
+                <td>{{ getStatsChamados($chamado->stats) }}</td>
                 <td>
                     <a href="{{ route('chamados.show', $chamado->id) }}">Visualizar</a>
                     <a href="{{ route('chamados.edit', $chamado->id) }}">Editar</a>

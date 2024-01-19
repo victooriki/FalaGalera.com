@@ -18,7 +18,7 @@ class CreateChamadosDTO
             $request->titulo,
             $request->descricao,
             $request->email,
-            1,
+            'a',
         );
     }
 }
