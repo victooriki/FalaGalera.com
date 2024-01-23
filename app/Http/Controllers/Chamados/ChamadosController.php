@@ -12,11 +12,9 @@ use Illuminate\Http\Request;
 
 class ChamadosController extends Controller
 {
-    protected $chamados;
-
-    public function __construct(Chamados $chamados, protected ChamadosService $service)
+    public function __construct(protected Chamados $chamados, protected ChamadosService $service)
     {
-        $this->chamados = $chamados;
+
     }
 
     public function index(Request $request)
