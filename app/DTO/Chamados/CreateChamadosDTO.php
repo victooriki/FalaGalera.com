@@ -1,6 +1,8 @@
 <?php
 
 namespace App\DTO\Chamados;
+
+use App\Enums\ChamadosStats;
 use App\Http\Requests\StoreUpdateChamados;
 
 class CreateChamadosDTO
@@ -9,7 +11,7 @@ class CreateChamadosDTO
         public string $titulo,
         public string $descricao,
         public string $email,
-        public string $status,
+        public ChamadosStats $status,
     ) {}
 
     public static function makeFromRequest(StoreUpdateChamados $request): self
@@ -18,7 +20,7 @@ class CreateChamadosDTO
             $request->titulo,
             $request->descricao,
             $request->email,
-            'a',
+            ChamadosStats::a,
         );
     }
 }

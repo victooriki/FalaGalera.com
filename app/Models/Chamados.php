@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\ChamadosStats;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,12 +15,15 @@ class Chamados extends Model
         'titulo',
         'descricao',
         'email',
-        'data_fechamento',
-        'data_conclusao',
-        'avaliacao',
-        'feedback_avaliacao',
         'stats',
         'created_at',
         'updated_at',
     ];
+
+    public function stats(): Attribute
+    {
+        return Attribute::make(
+            set: fn (ChamadosStats $stats) => $stats->name
+        );
+    }
 }
