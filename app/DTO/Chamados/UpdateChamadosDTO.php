@@ -15,10 +15,10 @@ class UpdateChamadosDTO
         public ChamadosStats $status,
     ) {}
 
-    public static function makeFromRequest(StoreUpdateChamados $request): self
+    public static function makeFromRequest(StoreUpdateChamados $request, string $id = null): self
     {
         return new self(
-            $request->id,
+            $id ?? $request->id,
             $request->titulo,
             $request->descricao,
             $request->email,

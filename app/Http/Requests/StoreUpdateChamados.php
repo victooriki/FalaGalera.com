@@ -41,12 +41,12 @@ class StoreUpdateChamados extends FormRequest
             ],
         ];
 
-        if ($this->method('PUT')) {
+        if ($this->method('PUT') || $this->method('PATCH')) {
             $rules['titulo'] = [
                 'required',
                 'min:5',
                 'max:255',
-                Rule::unique('chamados')->ignore($this->id)
+                Rule::unique('chamados')->ignore($this->id ?? $this->chamado)
             ];
         }
 
