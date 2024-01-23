@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DTO;
+namespace App\DTO\Chamados;
 use App\Http\Requests\StoreUpdateChamados;
 
 class UpdateChamadosDTO

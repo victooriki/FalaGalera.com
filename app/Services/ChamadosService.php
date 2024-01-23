@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\DTO\CreateChamadosDTO;
-use App\DTO\UpdateChamadosDTO;
+use App\DTO\Chamados\CreateChamadosDTO;
+use App\DTO\Chamados\UpdateChamadosDTO;
 use App\Repositories\ChamadosRepositoryInterface;
 use App\Repositories\PaginationInterface;
 use stdClass;

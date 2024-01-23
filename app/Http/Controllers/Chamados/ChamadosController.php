@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Chamados;
 
-use App\DTO\CreateChamadosDTO;
-use App\DTO\UpdateChamadosDTO;
+use App\DTO\Chamados\CreateChamadosDTO;
+use App\DTO\Chamados\UpdateChamadosDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateChamados;
 use App\Models\Chamados;
