@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Adapters\ApiAdapters;
 use App\DTO\Chamados\CreateChamadosDTO;
 use App\DTO\Chamados\UpdateChamadosDTO;
 use App\Http\Controllers\Controller;
@@ -21,9 +22,15 @@ class ChamadosController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $chamados = $this->service->paginate(
+            page: $request->get('page', 1),
+            totalPerPage: $request->get('perPage', 1),
+            filter: $request->filter,
+        );
+
+        return ApiAdapters::toJson($chamados);
     }
 
     /**
