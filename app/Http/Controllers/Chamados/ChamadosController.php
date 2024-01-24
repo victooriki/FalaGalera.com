@@ -21,7 +21,7 @@ class ChamadosController extends Controller
     {
         $chamados = $this->service->paginate(
             page: $request->get('page', 1),
-            totalPerPage: $request->get('perPage', 1),
+            totalPerPage: $request->get('perPage', 5),
             filter: $request->filter,
         );
 
@@ -41,7 +41,9 @@ class ChamadosController extends Controller
             CreateChamadosDTO::makeFromRequest($request)
         );
 
-        return redirect()->route('chamados.index');
+        return redirect()
+                ->route('chamados.index')
+                ->with('message', 'Cadastrado com sucesso!');
     }
 
     public function show(string|int $id)
@@ -72,13 +74,17 @@ class ChamadosController extends Controller
             return back();
         }
 
-        return redirect()->route('chamados.index');
+        return redirect()
+                ->route('chamados.index')
+                ->with('message', 'Atualizado com sucesso!');
     }
 
     public function destroy(string|int $id)
     {
         $this->service->delete($id);
 
-        return redirect()->route('chamados.index');
+        return redirect()
+                ->route('chamados.index')
+                ->with('message', 'Deletado com sucesso!');
     }
 }

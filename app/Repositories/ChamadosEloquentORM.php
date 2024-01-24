@@ -20,7 +20,7 @@ class ChamadosEloquentORM implements ChamadosRepositoryInterface
                     ->where(function ($query) use ($filter) {
                         if ($filter) {
                             $query->where('titulo', $filter);
-                            $query->orWere('descricao', 'like', "%{$filter}%");
+                            $query->orWhere('descricao', 'like', "%{$filter}%");
                         }
                     })
                     ->paginate($totalPerPage, ['*'], 'page', $page);
