@@ -5,8 +5,4 @@ Casos de Uso: (Use o FalaGalera.com para)
 
 - Tirar Dúvidas: Compartilhe suas perguntas e desafios em qualquer área.
 - Responder: Contribua com seu conhecimento, ajudando outros usuários a resolverem suas dúvidas.
-  
-Próximas Atualizações:
-- Autenticação de Usuário: Proteja sua conta e personalize sua experiência.
-- Controle de Perfil: Gerencie suas preferências e informações pessoais.
-- Histórico de Respostas e Dúvidas: Acompanhe suas interações anteriores.
+- API: Api para criação, leitura, atualização e deleção de dúvidas.
